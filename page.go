@@ -12,10 +12,6 @@ import (
   "strings"
 )
 
-const (
-  staticPath string = "./app/static/"
-)
-
 // Page structure for documents
 type Page struct {
   Title string
@@ -33,7 +29,7 @@ func readFile(path string) ([]byte, error){
 
 // Load a Markdown file into a Page struct
 func loadMarkDownPage(title string) (*Page, error) {
-  body, err := readFile(staticPath + title + ".md")
+  body, err := readFile(paths.Static + title + ".md")
   if err != nil {
     return nil, err
   }
@@ -43,7 +39,7 @@ func loadMarkDownPage(title string) (*Page, error) {
 
 // Load a TXT file into a Page struct
 func loadTxtPage(title string) (*Page, error) {
-  body, err := readFile(staticPath + title + ".txt")
+  body, err := readFile(paths.Static + title + ".txt")
   if err != nil {
     return nil, err
   }
@@ -54,7 +50,7 @@ func loadTxtPage(title string) (*Page, error) {
 
 // Load a HTML file into a Page struct
 func loadHTMLPage(title string) (*Page, error) {
-  body, err := readFile(staticPath + title + ".html")
+  body, err := readFile(paths.Static + title + ".html")
   if err != nil {
     return nil, err
   }
@@ -65,7 +61,7 @@ func loadHTMLPage(title string) (*Page, error) {
 
 // Handlers should call LoadPage, which should manage the page load regardless of storage type. Which could be HTML, txt or markdown
 func LoadPage(title string) (*Page, error){
-  path := staticPath + title
+  path := paths.Static + title
 
   if _, err := os.Stat(path + ".html"); err == nil {
     return loadHTMLPage(title)

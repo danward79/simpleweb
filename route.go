@@ -23,7 +23,6 @@ func SetPathConfig(c *PathConfig) {
 }
 
 func MakeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
-  fmt.Println("MakeHandler")
   return func(w http.ResponseWriter, r *http.Request) {
     m := GetPath(r.URL.Path)
     if m == nil {
@@ -35,7 +34,7 @@ func MakeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
   }
 }
 
-//"^/(about|contact|index|howto)/([a-zA-Z0-9]+)$"
+//Make sure the requested path is what we expect and return items from path
 var validPath = regexp.MustCompile("^/(about|contact|index|howto)/([a-zA-Z0-9]+)$")
 
 func GetPath (path string) []string{
