@@ -26,11 +26,18 @@ func GeneralContentHandler(w http.ResponseWriter, r *http.Request) {
   }
   
   pageContents := params.Get(":contents")
+  pageFolder := params.Get(":folder")
+  
+  //fmt.Println(pageContents)
+  //fmt.Println(r.URL.Path)
+  //d, _ := path.Split(r.URL.Path)
+  //d = path.Base(d)
+  
   if pageContents == "" {
     pageTitle = "index"
   } else {
     var err error
-    page, err = LoadPage(pageContents)
+    page, err = LoadPage(pageFolder + "/" + pageContents)
     if err != nil {
       http.Redirect(w, r, "/", http.StatusFound)
       return

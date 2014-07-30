@@ -3,7 +3,6 @@ package smplweb
 import (
   "net/http"
   "regexp"
-  "fmt"
 )
 
 type PathConfig struct {
@@ -26,7 +25,6 @@ func MakeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
   return func(w http.ResponseWriter, r *http.Request) {
     m := GetPath(r.URL.Path)
     if m == nil {
-      fmt.Println("MakeHandler: m = ", m)
       http.Redirect(w, r, paths.Redirect, http.StatusFound)
       return
     }

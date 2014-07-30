@@ -84,6 +84,7 @@ func getTitle(w http.ResponseWriter, r *http.Request) (string, error) {
 
 var templates map[string]*template.Template
 
+// From the layouts and includes builde templates.
 func CreateTemplates () {
   if templates == nil {
     templates = make(map[string]*template.Template)
@@ -105,6 +106,7 @@ func CreateTemplates () {
   }  
 }
 
+// Render given template on response
 func RenderTemplate(w http.ResponseWriter, tmpl string, p *Page) {  
   if t, ok := templates[tmpl]; ok {
     err := t.ExecuteTemplate(w, "base", p)
