@@ -1,4 +1,4 @@
-A Very Basic Web Frameworkin GO
+A Very Basic Web Framework in GO
 ====
 
 Framework... Not sure if that is correct.
